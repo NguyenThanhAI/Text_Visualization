@@ -1,0 +1,232 @@
+\documentclass[14pt, a4paper]{article}
+\usepackage{minitoc}
+\usepackage[left=3.00cm, right=2.5cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{mathtools}
+\usepackage{graphicx}
+%\usepackage{algpseudocode}
+%\usepackage{algorithm}
+\usepackage[ruled,vlined,linesnumbered,algosection]{algorithm2e}
+\usepackage{blindtext}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam}
+\usepackage[center]{caption}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr} % header, footer
+\usepackage{hyperref} % loại bỏ border với mục lục và công thức
+\usepackage[nonumberlist, nopostdot, nogroupskip]{glossaries}
+\usepackage{glossary-superragged}
+\usepackage{tikz,tkz-tab}
+\setglossarystyle{superraggedheaderborder}
+\pagestyle{fancy}
+%\usepackage[style=numeric,sortcites]{biblatex}
+%\addbibresource{ref.bib}
+%\usepackage[numbers]{natbib}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage[natbib,backend=biber,style=ieee, sorting=ynt]{biblatex}
+\bibliography{ref.bib}
+
+\graphicspath{{./figures/}}
+
+
+\makenoidxglossaries
+
+% Danh mục thuật ngữ
+
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+
+
+\fancyhf{}
+\rhead{\textbf{Môn học: Học máy và khai phá dữ liệu}}
+\lhead{\textbf{GVHD: PGS. TS. Trần Trọng Hiếu}}
+\rfoot{\thepage}
+\lfoot{\textbf{Học viên thực hiện: Nguyễn Chí Thanh - 21007925}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+\setlength{\parindent}{0.5cm}
+
+\setcounter{secnumdepth}{3} % Cho phép subsubsection trong report
+\setcounter{tocdepth}{3} % Chèn subsubsection vào bảng mục lục
+
+\newtheorem{dl}{Định lý}
+\newtheorem{md}{Mệnh đề}
+\newtheorem{bd}{Bổ đề}
+\newtheorem{dn}{Định nghĩa}
+\newtheorem{hq}{Hệ quả}
+
+\numberwithin{dl}{section}
+\numberwithin{md}{section}
+\numberwithin{bd}{section}
+\numberwithin{dn}{section}
+\numberwithin{hq}{section}
+
+\doublespacing
+\AtBeginEnvironment{tabular}{\doublespacing}
+
+\begin{document}
+    \begin{titlepage}
+
+        \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+        \center % Center everything on the page
+
+        %----------------------------------------------------------------------------------------
+        %	HEADING SECTIONS
+        %----------------------------------------------------------------------------------------
+        \textsc{\LARGE Đại học Quốc Gia Hà Nội}\\[0.5cm]
+        \textsc{\LARGE Trường đại học Khoa học tự nhiên}\\[0.5cm] % Name of your university/college
+        \textsc{\LARGE Khoa Toán - Cơ - Tin học}\\[0.5cm]
+
+        \includegraphics[scale=0.2]{HUS-logo.jpg}\\[0.5cm]
+
+        \textsc{\Large Chuyên ngành: Khoa học dữ liệu}\\[0.5cm] % Major heading such as course name
+
+
+        %----------------------------------------------------------------------------------------
+        %	TITLE SECTION
+        %----------------------------------------------------------------------------------------
+
+        \HRule \\[0.4cm]
+        { \huge \bfseries BÀI TẬP MÔN HỌC}\\[0.4cm] % Title of your document
+        \HRule \\[1.5cm]
+
+        \textsc{\Large Môn học: Một số vấn đề về đồ họa máy tính}\\[1cm] % Minor heading such as course title
+
+
+        \textsc{\Large Đề tài: Trực quan hóa văn bản và tài liệu}\\[2cm]
+
+
+        %----------------------------------------------------------------------------------------
+        %	AUTHOR SECTION
+        %----------------------------------------------------------------------------------------
+        \begin{minipage}{0.4\textwidth}
+            \begin{flushleft} \large
+            \emph{Giảng viên hướng dẫn:} \\
+            TS. Nguyễn Thị Bích Thủy % Supervisor's Name
+            \end{flushleft}
+        \end{minipage}\\[0.5cm]
+
+        \begin{minipage}{0.4\textwidth}
+        \begin{flushleft} \large
+        \emph{Học viên thực hiện:}\\
+        Nguyễn Chí Thanh \\
+        MSHV: 21007925 \\ % Your name
+        Lớp: Khoa học dữ liệu - K4
+        \end{flushleft}
+        \end{minipage}
+
+
+        % If you don't want a supervisor, uncomment the two lines below and remove the section above
+        %\Large \emph{Author:}\\
+        %John \textsc{Smith}\\[3cm] % Your name
+
+        %----------------------------------------------------------------------------------------
+        %	DATE SECTION
+        %----------------------------------------------------------------------------------------
+
+        % I don't want day because it is English
+        % {\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+        %----------------------------------------------------------------------------------------
+        %	LOGO SECTION
+        %----------------------------------------------------------------------------------------
+
+        %\includegraphics{logo/rsz_3logo-khtn.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+        %----------------------------------------------------------------------------------------
+
+        \vfill % Fill the rest of the page with whitespace
+
+    \end{titlepage}
+
+    \cleardoublepage
+    \pagenumbering{gobble}
+    \tableofcontents
+    \newpage
+    \listoffigures
+    \newpage
+    \glsaddall 
+    \renewcommand*{\glossaryname}{Danh mục các từ viết tắt}
+    \renewcommand*{\acronymname}{Danh sách từ viết tắt}
+    \renewcommand*{\entryname}{Viết tắt}
+    \renewcommand*{\descriptionname}{Viết đầy đủ}
+    \printnoidxglossary
+    \cleardoublepage
+    \pagenumbering{arabic}
+
+    %\maketitle
+
+    \newpage
+
+    \nocite{*}
+
+    \begin{center}
+    \section*{LỜI MỞ ĐẦU}
+    \end{center}
+    \addcontentsline{toc}{section}{{\bf LỜI MỞ ĐẦU}\rm}
+
+    Ta có một nguồn tài nguyên thông tin khổng lồ; từ các thư viện, đến các bộ lưu trữ email,
+    đến tất cả các khía cạnh của các ứng dụng trên internet.
+    Trực quan hóa là một công cụ tuyệt vời để phân tích các dữ liệu này.
+    Ta có thể trực quan hóa theo nhiều dạng dữ liệu như blog, wiki, twitter feed,
+    hàng tỷ từ, một tập các tờ báo hoặc một thư viện số.
+    Trực quan hóa dữ liệu là một công việc phụ thuộc theo nghĩa là các công việc nào phù hợp với văn bản, tài liệu hoặc các đối tượng liên quan đến web.
+    Cho dữ liệu văn bản và tài liệu, hầu hết các nhiệm vụ liên quan là tìm một từ, một cụm từ hoặc một chủ đề.
+    Với dữ liệu có cấu trúc một phần, ta có thể tìm kiếm mối quan hệ giữa các từ, các cụm từ, các chủ đề hoặc giữa các tài liệu.
+    Với văn bản hoặc tài liệu, nhiệm vụ chính và phổ biến nhất thường là tìm các mẫu và các điểm ngoại lai trong văn bản hoặc tài liệu.
+
+    Đề tài này ta sẽ tập trung vào nhiệm vụ trực quan hóa dữ liệu dạng văn bản và các phương pháp tiếp cận để phân tích trực quan dữ liệu văn bản.
+
+    \newpage
+
+    \section{Mở đầu}
+
+    Ta định nghĩa một tập các tài liệu là một \textit{corpus} (số nhiều là \textit{corpora}).
+    Ta làm việc với các đối tượng trong corpora.
+    Các đối tượng này có thể là các từ, các câu, đoạn văn, tài liệu hoặc một tập các tài liệu.
+    Ta có thể xem xét cả các ảnh và video.
+    Các đối tượng trên thường được xem là nguyển tử tương ứng với các nhiệm vụ, phân tích và trực quan hóa.
+    Văn bản và tài liệu thường được ở dạng có cấu trúc tối thiểu và rất đa dạng các thuộc tính và metadata,
+    đặc biệt khi ta tập trung vào một lĩnh vực ứng dụng cụ thể.
+    Ví dụ, các tài liệu có một định dạng và thường bao gồm metadata về tài liệu (ví dụ tác giả, ngày được tạo, ngày sửa đổi, bình luận, kích thước).
+    Các hệ thống truy hồi thông tin thường được dùng để truy vấn corpora, thường yêu cầu tính toán độ phù hợp của tài liệu ứng với một truy vấn.
+    Nhiệm vụ này yêu cầu tiền xử lý tài liệu và sự giải thích về ngữ nghĩa của văn bản.
+
+    Ta có thể tính toán thống kê về tài liệu.
+    Ví dụ, số lượng các từ hoặc đoạn văn hoặc phân phối của các từ hoặc tần suất của các tự, tất cả có thể được sử dụng để xác thực tác giả.
+    Câu hỏi là liệu có đoạn văn nào được lặp lại với cùng các từ và các câu?
+    Ta có thể xác định mối quan hệ giữa các đoạn văn hoặc mối quan hệ giữa các tài liệu trong một corpus.
+    Ví dụ, khi một người hỏi, "Những tài liệu nào liên quan đến sự lây lan của dịch cúm?"
+    Đây không phải là một câu truy vấn đơn giản, ta không thể đơn giản tìm kiếm cho từ "cúm" hay "dịch cúm".
+    Ta cần phải xem xét đến sự kết nối và các mối quan hệ giữa nhiều tài liệu rằng có tồn tại các cụm không?
+    Các tài liệu này có trình bày về chủ đề đang tìm kiếm trong corpus không?
+    Sự tương đồng có thể được định nghĩa trong quan hệ về trích dẫn, quyền tác giả, các chủ đề,\dots
+
+    \section{Các cấp của biểu diễn văn bản}
+
+    Ta định nghĩa ba cấp độ biểu diễn văn bản: từ vựng, cú pháp và ngữ nghĩa.
+    Mỗi cấp độ biểu diễn đều yêu cầu chuyển đổi văn bản từ dạng phi cấu trúc sang dạng dữ liệu có cấu trúc.
+
+    \textbf{Cấp độ từ vựng.} Cấp độ từ vựng liên qua đến việc biến đổi một chuỗi các ký tự sang một dãy các thực thể nguyên tử được gọi là \textit{tokens}.
+    Bộ phân tích từ vựng xử lý dãy các ký tự với một bộ quy tắc nhất định thành một dãy các tokens mới có thể được sử dụng cho những phân tích sâu hơn.
+    Tokens có thể bao gồm các ký tự, các ký tự n-grams, các từ, các gốc từ, các từ vựng, các cụm từ, hoặc các từ n-grams, với tất cả các thuộc tính liên quan.
+    Nhiều kiểu quy tắc có thể được dùng để trích xuất các tokens, phổ biến nhất là máy trạng thái hữ hạn được xác định bởi các biểu thức chính quy.
+
+    \textbf{Cấp độ cú pháp.} Cấp độ cú pháp liên quan đến việc xác định và gắn thẻ (chú thích) cho từng chức năng của tokens.
+    Ta chỉ định nhiều thẻ khác nhau, chẳng hạn vị trí câu hoặc một từ là danh từ hay tục ngữ, tính từ, bổ ngữ, liên từ hay không.
+    Tokens có thể có các thuộc tính như là số ít hoặc số nhiều, sự tương đồng với các tokens khác.
+    
+\end{document}

@@ -45,8 +45,8 @@
 
 
 \fancyhf{}
-\rhead{\textbf{Môn học: Học máy và khai phá dữ liệu}}
-\lhead{\textbf{GVHD: PGS. TS. Trần Trọng Hiếu}}
+\rhead{\textbf{Môn học: Một số vấn đề về đồ họa máy tính}}
+\lhead{\textbf{GVHD: TS. Nguyễn Thị Bích Thủy}}
 \rfoot{\thepage}
 \lfoot{\textbf{Học viên thực hiện: Nguyễn Chí Thanh - 21007925}}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -250,7 +250,7 @@
         $terms \gets \emptyset$\;
         \ForEach{$token$ $t$ \textbf{in} $tokenStream$}{
             \If{$t$ không phải là một từ dừng}{
-                \If{$t$ chưa nằm trong $terms$} {
+                \If{$t$ \textbf{not in} $terms$} {
                     $terms \lbrack t \rbrack \gets 1$\;
                 } 
                 \Else {
@@ -296,6 +296,44 @@
         \includegraphics[width=0.8\textwidth]{1.png}
         \caption{Minh họa của các vector của các thuật ngữ trong nhiều tài liệu, bao gồm giá trị tf-idf.}
     \end{figure}
+
+    \begin{algorithm}[h!]
+        \DontPrintSemicolon
+        $termFrequencies \gets \emptyset$\; \tcp{Tra cứu bảng đếm số lần thuật ngữ/từ xuất hiện cho tên tài liệu}
+        $documentFrequencies \gets  \emptyset$\; \tcp*{Đếm số tài liệu mà trong đó một thuật ngữ/từ nhất định xuất hiện}
+        $uniqueTerms \gets \emptyset$\; \tcp*{Danh sách các thuật ngữ/từ riêng biệt}
+        \ForEach{$document$ $d$ \textbf{in} $documents$}{
+            $docName \gets NAME(d)$\; \tcp{Trích xuất tên của tài liệu}
+            $tokenStream \gets TOKENIZE(d)$\; \tcp{Tạo luồng token của tài liệu}
+            $terms \gets COUNT-TERMS(tokenStream)$\; \tcp{Đếm tần suất của các thuật ngữ/từ}
+            $termFrequencies \lbrack docName \rbrack \gets terms$\; \tcp{Lưu trữ tần suất các thuật ngữ/từ tương ứng với từng tài liệu}
+            \ForEach{$term$ $t$ \textbf{in} $KEYS(terms$)}{
+                \If{$t$ \textbf{not in} $documentFrequencies$} {
+                    $documentFrequencies \lbrack t \rbrack \gets 1$\;
+                } 
+                \Else {
+                    $documentFrequencies \lbrack t \rbrack \gets documentFrequencies \lbrack t \rbrack + 1$\;
+                }
+                $uniqueTerms \gets uniqueTerms \cup t$\;
+            }
+        }
+        $tfIdfVectorTable \gets \emptyset$\; \tcp{Tra cứu vector tf-idf cho tên tài liệu}
+        $n \gets LENGTH(documents)$\;
+        \ForEach{$document$ $name$ $docName$ \textbf{in} $KEYS(termFrequencies)$}{
+            $tfIdfVector \gets $ \text{zeroes array of length} $LENGTH(uniqueTerms)$\;
+            $terms \gets termFrequencies \lbrack docName \rbrack$\;
+            \ForEach{$term$ $t$ \textbf{in} $KEYS(terms)$}{
+                $tf \gets terms \lbrack t \rbrack$\;
+                $df \gets documentFrequencies \lbrack t \rbrack$\;
+                $tfIdf \gets tf \times \log \Big( \dfrac{n}{df} \Big)$\;
+                $tfIdfVector \lbrack \text{chỉ số của } t \text{ trong } uniqueTerms \rbrack \gets tfIdf$\;
+            }
+            $tfIdfVectorTable \lbrack docName \rbrack \gets tfIdfVector$\;
+        }
+        \Return{$tfIdfVectorTable$}\;
+        \caption{COMPUTE-TFIDF(documents)}
+        \label{alg:COMPUTE-TFIDF}
+    \end{algorithm}
 
     \begin{figure}[h!]
         \centering

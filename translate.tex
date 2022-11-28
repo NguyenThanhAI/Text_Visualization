@@ -228,11 +228,88 @@
     \textbf{Cấp độ cú pháp.} Cấp độ cú pháp liên quan đến việc xác định và gắn thẻ (chú thích) cho từng chức năng của tokens.
     Ta chỉ định nhiều thẻ khác nhau, chẳng hạn vị trí câu hoặc một từ là danh từ hay tục ngữ, tính từ, bổ ngữ, liên từ hay không.
     Tokens có thể có các thuộc tính như là số ít hoặc số nhiều, sự tương đồng với các tokens khác.
+    Các thẻ đa dạng hơn bao gồm ngày, lượng tiền, địa điểm, cá nhân, tổ chức và thời gian (hình \ref{fig:3}).
+    Quá trình trích xuất các gán nhãn này được gọi là \textit{nhận diện thực thể được đặt tên} (NER).
+    Sự phong phú và đa dạng của các mô hình ngôn ngữ và ngữ pháp (mô hình sinh, mô hình phân loại, phụ thuộc, xác suất và chức năng luận) mang lại nhiều cách tiếp cận khác nhau.
+
+    \textbf{Cấp độ ngữ nghĩa.} Cấp độ ngữ nghĩa bao gồm việc trích xuất xuất các ý nghĩa và quan hệ giữa các phần tri thức thu được từ các cấu trúc được xác định ở cấp độ cú pháp.
+    Mục tiêu của cấp độ này là xác định một giải thích phân tích của toàn văn bản trong một ngữ cảnh cụ thể hoặc thậm chí không phụ thuộc vào ngữ cảnh.
+
+    \section{Mô hình không gian vector}
+
+    Tính toán vectors các thuật ngữ hoặc các từ là một bước thiết yếu cho nhiều kỹ thuật trực quan hóa và phân tích tài liệu và văn bản.
+    Trong \textit{mô hình không gian vector} \cite{356}, một vector của một thuật ngữ hoặc một từ cho một đối tượng quan tâm (đoạn văn, tài liệu hoặc một tập các tài liệu) là một vector mà trong đó mỗi chiều biểu diễn trọng số của một từ đã cho trong tài liệu đó.
+    Thông từ, để loại bỏ nhiễu hoặc các từ dừng (stop words) (ví dụ "the", "a") được loại bỏ (lọc) và các từ có chung gốc được ghép vào làm một (ghép từ gốc).
+
+    Mã giả bên dưới đếm số lần xuất hiện của các tokens riêng biệt, ngoại trừ các từ dừng.
+    Đầu vào được giả định là một luồng của các tokens được tạo ra bởi bộ phân tích từ vựng cho một tài liệu.
+    Biến các thuật ngữ bao gồm một bảng băm ánh xạ các thuật ngữ riêng biệt với số lượng của chúng trong tài liệu.
+
+    \begin{algorithm}[h!]
+        \DontPrintSemicolon
+        $terms \gets \emptyset$\;
+        \ForEach{$token$ $t$ \textbf{in} $tokenStream$}{
+            \If{$t$ không phải là một từ dừng}{
+                \If{$t$ chưa nằm trong $terms$} {
+                    $terms \lbrack t \rbrack \gets 1$\;
+                } 
+                \Else {
+                    $terms \lbrack t \rbrack \gets terms \lbrack t \rbrack + 1$\;
+                }
+            }
+        }
+        \Return{$terms$}\;
+        \caption{COUNT-TERMS(tokenStream)}
+        \label{alg:COUNT-TERMS}
+    \end{algorithm}
+
+    Ta áp dụng mã giả thuật toán \ref{alg:COUNT-TERMS} cho đoạn văn dưới đây:
     
+    \begin{verbatim}
+        There is a great deal of controversy about the safety of genetically
+    engineered foods. Advocates of biotechnology often say that the risks
+    are overblown. ‘‘There have been 25,000 trials of genetically
+    modified crops in the world, now, and not a single incident, or
+    anything dangerous in these releases,’’ said a spokesman for Adventa
+    Holdings, a UK biotech firm. During the 2000 presidential campaign,
+    then-candidate George W. Bush said that ‘‘study after study has shown
+    no evidence of danger.’’ And Clinton Administration Agriculture
+    Secretary Dan Glickman said that ‘‘test after rigorous scientific
+    test’’ had proven the safety of genetically engineered products.
+    \end{verbatim}
+
+    Đoạn văn trên bao gồm 98 tokens, 74 thuật ngữ và 48 thuật ngữ khi các từ dừng được loại bỏ.
+    Đây là một mẫu của vector thuật ngữ được tao ra từ thuật toán \ref{alg:COUNT-TERMS}:
+
+    \begin{table}[h!]
+        \begin{tabular} {|c| c| c| c| c| c| c| c| c| c|}
+            \hline
+            genetically & said & safety & engineered & study & test & great & deal & controversy & foods \\
+            \hline
+            3 & 3 & 2 & 2 & 2 & 2 & 1 & 1 & 1 & 1 \\
+            \hline
+        \end{tabular}
+    \end{table}
+
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\textwidth]{1.png}
+        \caption{Minh họa của các vector của các thuật ngữ trong nhiều tài liệu, bao gồm giá trị tf-idf.}
+    \end{figure}
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{2.png}
+        \caption{Phân phối của các thuật ngữ trong Wikipedia, một ví dụ về luật Zipf.
+        Phân phối của các thuật ngữ nằm trên trục y, và thứ hạng tần suất nằm trên trục x.}
+    \end{figure}
+
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{3.png}
         \caption{Chế độ xem mà các thực thể có tên được tô sáng, các màu tô sáng tương ứng theo loại thực thể}
+        \label{fig:3}
     \end{figure}
 
 

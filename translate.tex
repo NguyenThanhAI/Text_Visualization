@@ -291,11 +291,34 @@
         \end{tabular}
     \end{table}
 
+    \subsection{Tính toán các trong số}
+
+    Mô hình không gian vector yêu cầu một sơ đồ trọng số để gán trọng số cho các thuật ngữ ở trong một tài liệu.
+    Có nhiều phương pháp để làm việc này, phương pháp nổi tiếng nhất trong số đó là tần số thuật ngữ - tần số tài liệu nghịch đảo (tf-idf) \cite{355}.
+    Ta đặt $Tf(w)$ là tần suất của thuật ngữ hay số lần mà từ $w$ xuất hiện trong tài liệu, và $Df(w)$ là tần suất của tài liệu (số tài liệu có chứa từ đó).
+    Gọi $N$ là số tài liệu. Ta tính $TfIdf(w)$ theo công thức:
+
+    \begin{equation}
+        TfIdf(w) = Tf(w) \times \log \Big( \dfrac{N}{Df(w)} \Big)
+    \end{equation}
+
+    Đại lượng này biểu diễn tính quan trọng tương đối của từ trong tài liệu, phù hợp với khía cạnh trực giác về độ quan trọng của các từ.
+    Một từ được xem là quan trọng hơn nếu từ này xuất hiện trong ít hơn số tài liệu ($Df(w)$ thấp) cũng như xuất hiện nhiều lần hơn trong một tài liệu nào đó ($Tf(w)$ lớn hơn).
+    Nói cách khác, ta quan tâm hơn đến những từ xuất hiện thường xuyên trong một tài liệu, nhưng xuất hiện trong ít hơn số tài liệu trong bộ tài liệu.
+    Những từ này về mặt trực giác quan trọng hơn vì chúng khác biệt, tách biệt hoặc phân biệt rõ ràng hơn.
+    Hình \ref{fig:1} hiển thị các vector thuật ngữ của một nhóm các tài liệu sử dụng tf-idf.
+
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\textwidth]{1.png}
         \caption{Minh họa của các vector của các thuật ngữ trong nhiều tài liệu, bao gồm giá trị tf-idf.}
+        \label{fig:1}
     \end{figure}
+
+    Mã giả ở thuật toán \ref{alg:COMPUTE-TFIDF} tính toán các vector tf-idf cho từng tài liệu trong bộ tài liệu được cho trước.
+    Thủ tục này dùng hàm COUNT-TERMS ở thuật toán \ref{alg:COUNT-TERMS}.
+    Phần đầu tiên lặp qua tất cả các tài liệu, tính toán và lưu trữ tần suất của từng thuật ngữ và tần suất của từng tài liệu tương ứng với thuật ngữ.
+    Phần thứ hai tính toán vecotr tf-idf cho từng tài liệu và lưu trong một bảng.
 
     \begin{algorithm}[h!]
         \DontPrintSemicolon

@@ -358,13 +358,41 @@
         \label{alg:COMPUTE-TFIDF}
     \end{algorithm}
 
+    \subsection{Định luật Zipf}
+
+    Phân phối chuẩn và phân phối đều là các phân phối ta quen thuộc nhất.
+    Phân phối hàm mũ ngày nay rất phổ biến với kích thước dữ liệu lớn, phản ánh hiện tượng mở rộng dữ liệu.
+    Nhà kinh tế học Vilfredo Pareto tuyên bố rằng doanh thu của một công ty tỷ lệ nghịch với thứ hạng của công ty này, chính là tuân theo phân phối mũ kinh điển,
+    dẫn đến quy tắc 80 - 20, trong đó 20\% dân số nắm giữ 80\% tài sản.
+
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\textwidth]{2.png}
         \caption{Phân phối của các thuật ngữ trong Wikipedia, một ví dụ về luật Zipf.
         Phân phối của các thuật ngữ nằm trên trục y, và thứ hạng tần suất nằm trên trục x.}
+        \label{fig:2}
     \end{figure}
 
+    Nhà ngôn ngữ học George Kingsley Zipf tuyên bố rằng phân phối của các từ trong corpora tuân theo phân phối mũ được gọi là phân phối Zipf.
+    Định luật Zipf \cite{490} phát biểu rằng trong một tài liệu ngôn ngữ tự nhiên điển hình, tần suất của một từ tỷ lệ nghịch với thứ hạng của nó trong bảng tần suất.
+    Vẽ đồ thị đường cong Zipf trên thang đo log - log ta thu được một đường thẳng có hệ số góc -1 (hình \ref{fig:2}).
+
+    Ý nghĩa của định luật Zipf là một lượng nhỏ các từ miêu tả hầu hết các khái niệm chính trong các tài liệu nhỏ.
+    Có rất nhiều ví dụ về tóm tắt văn bản cho phép mô tả đầy đủ chỉ bằng một vài từ.
+
+    \subsection{Các nhiệm vụ sử dụng mô hình không gian vector}
+
+    Mô hình không gian vector, khi đi cùng với một độ đo khoảng cách cho phép ta thực hiện nhiều tác vụ hữu ích.
+    Ta có thể sử dụng tf-idf và mô hình không gian vector để nhận diện các tài liệu cần được quan tâm đặc biệt.
+    Ví dụ, mô hình không gian vector, với việc sử dụng một số độ đo khoảng cách, sẽ cho phép ta trả lời câu hỏi tài liệu nào giống với một tài liệu cụ thể cho trước,
+    tài liệu nào có liên quan đến một tập các tài liệu hoặc tài liệu nào phù hợp nhất cho một truy vấn tìm kiếm cho trước,
+    bằng cách tìm tất cả các tài liệu mà các vector thuật ngữ là gần nhất với tài liệu đã cho, vector trung bình trên một tập các tài liệu hoặc vector của một truy vấn tìm kiếm.
+
+    Một nhiệm vụ gián tiếp khác là làm thế nào để giúp người dùng hiểu được ý nghĩa của toàn bộ corpus.
+    Người dùng có thể đang tìm kiếm các mẫu hoặc các cấu trúc, ví dụ các chủ đề chính của tài liệu, các cụm và phân phối của các chủ đề xuyên suốt tập tài liệu.
+    Điều này thường liên quan đến việc trực quan hóa corpus trong bố cục hai chiều hoặc hiển thị cho người dùng một biểu đồ kết nối giữa các tài liệu hoặc thực thể để điều hướng.
+    Quá trình trực quan hóa ánh xạ đến trực quan hóa tài liệu: ta thu thập dữ liệu (tập văn bản),
+    biến đổi các tà liệu này thành các vector, sau đó thực thi các thuật toán dựa trên các nhiệm vụ đang được quan tâm (đo độ tương tự, tìm kiếm, phân cụm) và thực hiện trực quan hóa.
 
     \begin{figure}[h!]
         \centering
@@ -373,6 +401,28 @@
         \label{fig:3}
     \end{figure}
 
+    \section{Trực quan hóa tài liệu đơn}
+
+    Ở mục này ta sẽ trình bày một số phương pháp trực quan hóa dữ liệu của tài liệu văn bản đơn được lấy từ tập dữ liệu VAST Contest 2007.
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{4.png}
+        \caption{Trực quan hóa đám mây thẻ được tạo bởi dịch vụ miễn phí tagCrowd.com \cite{396}.
+        Cỡ chữ và độ tối tỷ lệ thuận với tuần suất xuất hiện của từ trong tài liệu}
+        \label{fig:4}
+    \end{figure}
+
+    \subsection{Đám mây từ}
+
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{5.png}
+        \caption{Một Wordle được tạo bởi dịch vụ miễn phí wordle.net \cite{118}.
+        Kích thước của các từ tương ứng với tần suất của từ trong tài liệu}
+        \label{fig:5}
+    \end{figure}
 
     \newpage
     

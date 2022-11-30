@@ -504,11 +504,84 @@
     Đây là bài toán đối kháng và thường có độ phức tạp $O(n^2)$.
     Ta tính toán sự giống nhau giữa tất cả từng cặp tài liệu và xác định bố cục.
     Cách tiếp cẩn phổ biến là bố cục lò xo đồ thị, chia tỷ lệ đa chiều, phân cụm (k-means, phân cấp, tối đa hóa kỳ vọng (EM), vector hỗ trợ) và bản đồ tự tổ chức.
-    Ta trình bày một vài kỹ thuật trực quan hóa tập tài liệu như bản đồ tự tổ chức, bản đồ cụm và các chủ đề.
+    Ta trình bày một vài kỹ thuật trực quan hóa tập tài liệu như bản đồ tự tổ chức, bản đồ cụm và các hình nền chủ đề.
 
     \subsection{Bản đồ tự tổ chức}
 
+    Bản đồ tự tổ chức (SOM) \cite{248} là một thuật toán học không giám sát bằng cách sử dụng một tập các nút thường là 2 chiều, vị trí mà tài liệu sẽ được đặt.
+    Từng nút có một vector tưng ứng với cùng số chiều với vector đầu vào (các vector tài liệu) được sử dụng để huấn luyện bản đồ.
+    Ta khởi tạo các nút của SOM, thường có các trọng số ngẫu nhiên.
+    Ta chọn một ector ngẫu nhiên từ các vector đầu vào và tính toán khoảng cách của nó đến từng mỗi nút khác.
+    Ta điều chỉnh trọng số của các nút gần hất (trong một bán kính cụ thể), làm cho mỗi nút gần hơn tới vector đầu vào,
+    với trọng số đầu vào cao hơn tương ứng với nút được chọn gần nhất.
+    Khi ta lặp qua các vector đầu vào, bán kính sẽ nhỏ hơn.
+    Một ví dụ sử dụng bản đồ tự tổ chức cho dữ liệu văn bản được minh họa trong hình \ref{fig:10} \cite{454},
+    hiển thị một triệu tài liệu được thu thập từ 83 nhóm tin tức.
     
+
+    \subsection{Hình nền chủ đề}
+
+    Hình nền chủ đề là bản tóm tắt của corpora sử dụng phong cảnh 3 chiều trừu tượng, trong đó chiều cao và màu sắc được sử dụng để biểu diễn mật độ của các tài liệu tương tự giống nhau.
+    Một ví dụ được minh họa trong hình \ref{fig:11} từ Pacific Northwest National Labs \cite{407} đại diện cho các bài báo được trực quan hóa dưới dạng hình nền chủ đề.
+    Các ngọn núi ao hơn biểu thị tần suất chủ đề cao hơn trong kho tài liệu (chiều cao tỷ lệ thuận với số lượng tài liệu liên quan đến chủ đề).
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\textwidth]{10.png}
+        \caption{Bố cục bản đồ tự tổ chức của mục bản tin Phần Lan.
+        Các nhãn hiển thị các khu vực chủ đề và màu sắc biểu thị số lượng các tài liệu tương ứng với chủ đề, với các vùng càng sáng chứa nhiều tài liệu hơn \cite{454}.}
+        \label{fig:10}
+    \end{figure}
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.6\textwidth]{11.png}
+        \caption{Một hình nền chủ đề từ PNNL sử dụng chiều cao để biểu diễn tần suất xuất hiện của các chủ đề trong các bài báo. (Hình ảnh được in từ \cite{407} với sự cấp phép của  Springer Science and Business Media).}
+        \label{fig:11}
+    \end{figure}
+
+    \subsection{Thẻ tài liệu}
+
+    Thẻ tài liệu là một cách trực quan hóa thu gọn (hình \ref{fig:12}) biểu diễn ngữ nghĩa chính của tài liệu dưới dạng hỗn hợp hình ảnh và các thuật ngữ chính quan trọng, tương tự như thẻ trong trò chơi át chủ bài \cite{400}.
+    Các thuật ngữ chính được trích xuất bằng cách sử dụng một cách tiếp cận khai phá văn bản nâng cao dựa trên trích xuất tự động của cấu trúc tài liệu.
+    Các hình ảnh và chú thích được trích xuất sử dụng heuristic đồ họa và các thích được sử dụng cho các trọng số ảnh bán ngữ nghĩa.
+    Hơn nữa, phân phối màu của ảnh được dùng để phân loại hình ảnh vào các lớp (lớp 1: ảnh chụp/ảnh kết xuất, lớp 2: sơ đồ/bản phác thảo/đồ thị, lớp 3: bảng) và hiển thị ít nhất một đại diện từ mỗi lớp không rỗng.
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.95\textwidth]{12.png}
+        \caption{Kho tài liệu của hội nghị IEEE InfoVis 2008 được biểu diễn bằng một ma trận các thẻ tài liệu.
+        Tuần suất của các thuật ngữ trên từng trang được hiển thị ở bên tay phải của thẻ lại liệu (màu càng đỏ thể hiện tần số càng cao, ta có thể thấy ở tài liệu thứ nhất ở hàng thứ 3) \cite{400}.}
+        \label{fig:12}
+    \end{figure}
+
+    \section{Các kỹ thuật trực quan hóa văn bản mở rộng}
+
+    Mục này ta sẽ tìm hiểu nhiều kỹ thuật trực quan hóa văn bản liên quan đến metadata hay nói cách khác là vượt qua các cách trực quan hóa dựa trên vector thuật ngữ.
+
+    \subsection{Trực quan hóa phần mềm}
+
+    Eick và các cộng sự đã phát triển một công cụ trực quan hóa có tên là SeeSoft \cite{108} giúp trực quan hóa số liệu thống kê cho từng dòng code (tuổi và số thay đổi, lập trình viên, ngày tháng).
+    Hình \ref{fig:13}, từng cột biểu diễn một file mã nguồn với chiều cao biểu thị kích thước của file.
+    Nếu như file dài hơn màn hình, nó sẽ tiếp tục được biểu diễn ở cột tiếp theo.
+    Trong biểu diễn của SeeSoft, từng hàng biểu diễn một dòng code.
+    Vì số lượng dòng quá lớn cho một hàng, nên mỗi dòng được biểu diễn bởi một điểm ảnh trong hàng ngang.
+    Điều này làm tăng số dòng có thể được hiển thị.
+    Màu sắc được sử dụng để biểu thị số lần được gọi.
+    Dòng càng màu đỏ thì dòng này càng được gọi nhiều, được gọi là điểm nóng (key hotspot).
+    Một dòng màu xanh thể hiện ít được gọi hơn.
+    Màu sắc có thể được sử dụng để biểu diễn các tham số khác, ví dụ như thời gian sửa đổi lần cuối hoặc số lần sửa đổi.
+    Đối với màn hình có độ phân giải 1000x1000, SeeSoft có khả năng hiển thị lên tới 50000 dòng code.
+    Hình ảnh bao gồm 53 file với 15255 dòng code. 
+    File được lựa chọn là file1.c, một khối code được phóng to của dòng code 408.
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.95\textwidth]{13.png}
+        \caption{Trực quan hóa sử dụng phần mềm SeeSoft. Các hình chữ nhật biểu diễn các file mã nguồn.
+        Kích thước của các hình chữ nhật trong từng cột tương ứng với độ dài của file mã nguồn, và màu sắc của từng dòng biểu diễn các tham số liên quan đến việc sửa đổi \cite{108}.}
+        \label{fig:13}
+    \end{figure}
 
     \newpage
     

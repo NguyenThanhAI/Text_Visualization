@@ -415,6 +415,9 @@
 
     \subsection{Đám mây từ}
 
+    Đám mây từ (hình \ref{fig:4}), còn được gọi là đám mây văn bản hoặc đám mây thẻ, là bố của các các token mà được tô màu và định cỡ hiển thị theo tần suất xuất hiện của chúng trong một tài liệu.
+    Các đám mây văn bản và các biến thể của chúng, chẳng hạn như Wordle (hình \ref{fig:5}) là những vi dụ về sử quan quá chỉ sử dụng các vector tần suất của các thuật ngữ và một số thuật toán bố cục để tạo trực quan hóa.
+
 
     \begin{figure}[h!]
         \centering
@@ -422,6 +425,77 @@
         \caption{Một Wordle được tạo bởi dịch vụ miễn phí wordle.net \cite{118}.
         Kích thước của các từ tương ứng với tần suất của từ trong tài liệu}
         \label{fig:5}
+    \end{figure}
+
+    \subsection{WordTree}
+
+    Trực quan hóa WordTree \cite{450} là một biểu diễn trực quan của cả tần số thuật ngữ cũng như ngữ cảnh của thuật ngữ (hình \ref{fig:6}).
+    Kích thước được sử dụng để đại diện cho thuật ngữ hoặc tần suất của cụm từ.
+    Gốc của cây là một từ hoặc cụm từ do người dùng chỉ định và các nhánh biểu diễn các ngữ cảnh khác nhau mà từ hoặc cụm từ được sử dụng trong tài liệu.
+
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{6.png}
+        \caption{Hình ảnh WordTree được tạo bởi dịch vụ miễn phí ManyEyes \cite{196}.
+        Các nhánh của cây đại diện cho các ngữ cảnh khác nhau theo sau một từ gốc hoặc cụm từ gốc trong tài liệu}
+        \label{fig:6}
+    \end{figure}
+
+
+    \subsection{TextArc}
+
+    Ta có thể mở rộng biểu diễn của phân phối từ bằng cách hiển thị kết nối.
+    Có nhiều cách để tính toán kết nối giữa các từ.
+    TextArc \cite{312} là một biểu diễn trực quan về các thuật ngữ liên quan đến dòng văn bản mà nó xuất hiện (hình \ref{fig:7}).
+    Mỗi từ trong văn bản được vẽ theo thứ tự xung quan một elip dưới dạng các dòng nhỏ với độ lệch nhẹ ở đầu.
+    Cũng như trong đám mấy văn bản, các từ với tần suất cao hơn được vẽ lớn hơn và sáng hơn.
+    Các từ có tần suất cao hơn được vẽ bên trong elip, kéo bởi các lần xuất hiện của nó trên hình tròn (tương tự với RadViz).
+    Người dùng có thể ấn vào các chữ ẩn bên dưới bằng cách thăm dò và tạo hiệu ứng "đọc" văn bản bằng cach trực quan hóa luồn văn bản thông qua các thuật ngữ được kết nối có liên quan.
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.9\textwidth]{7.png}
+        \caption{Một hình ảnh TextArc được tạo ra sử dụng truyện "Alice in Wonderland".
+        Các từ xuất hiện trong toàn bộ các phần trong tài liệu được đặt ở giữa TextArc, trong khi các từ chỉ xuất hiện trong vài phần cụ thể được đặt gần viền hơn.}
+        \label{fig:7}
+    \end{figure}
+
+    \subsection{Sơ đồ vòng cung (Arc Diagrams)}
+
+    Sơ đồ vòng cung là trực quan hóa tập trung vào việc hiển thị sự lặp lại trong văn bản.
+    Các dãy con lặp đi lặp lại được xác định và được nối với nhau bằng các cung nửa hình tròn.
+    Độ dày của các cung biểu diễn độ dài của các dãy con và độ cao của các cung biểu diễn khoảng cách giữa các dãy con.
+    Hình \ref{fig:8} hiển thị "Bach’s Minuet in G Major", trực quan hóa mô hình cổ điển của điệu nhảy Minuet.
+    Nó bao gồm hai phần, mỗi phần gồm một bước dài được đi hai lần.
+    Các phần có liên quan không mật thiết, được thể hiện bởi các vòng cung mỏng kết nối hai phần chính.
+    Sự trùng lặp của hai cung chính cho thấy đoạn cuối của phần đầu giống với đoạn đầu của phần thứ hai
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.9\textwidth]{8.png}
+        \caption{Một hình ảnh sơ đồ vòng cung của "Bach’s Minuet in G Major".
+        Các dãy lặp lại được kết nối bằng một đường cong nửa hình tròn. \cite{451}}
+        \label{fig:8}
+    \end{figure}
+
+    \subsection{Dấu ấn văn học (Literature Fingerpriting)}
+
+
+    Dấu ấn văn học là một phương pháp trực quan hóa các đặc trưng được sử dụng để thể hiện các đặc tính của văn bản \cite{222}.
+    Thay vì chỉ tính toán một giá trị đặc trưng hoặc một vector cho toàn bộ văn bản (đây là điều hay thường được thực hiện), ta tính toán một dãy các giá trị đặc trưng từng văn bản và hiển thị chúng cho người dùng dưới dạng dấu ấn đặc trưng của tài liệu.
+    Điều này cho phép người dùng hiểu tài liệu và phân tích sự phát triển của các giá trị trên toàn văn bản.
+    Hơn nữa, thông tin cấu trúc của tài liệu được dùng để trực quan hóa tài liệu trên nhiều cấp độ khác nhau của độ phân giải.
+    Dấu ấn văn học được áp dụng cho bài toán xác nhận quyền tác giả để thể hiện khả năng phân biệt của các độ đo tiêu chuẩn được giả định để nắm bắt được phong cách sáng tác của một tác giả (hình \ref{fig:9}).
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.9\textwidth]{9.png}
+        \caption{Kỹ thuật lấy dấu ấn văn học. Dấu ấn văn học được sử dụng để phân tích nhiều độ đo văn bản để phân biệt tác giả của tài liệu.
+        Từng điểm ảnh biểu diễn một khối văn bản, các điểm ảnh được ghép lại thành các cuốn sách.
+        Màu các điểm ảnh được ảnh xạ từ các giá trị đặc trưng, trong trường hợp này là độ dài trung bình của câu.
+        Nếu một độ đo có khả năng phân biệt giữa hai tác giả, các sách ở hàng đầu tiên được viết bởi Jack London và các sách còn lại được viết bởi Mark Twain. \cite{222}}
+        \label{fig:9}
     \end{figure}
 
     \newpage

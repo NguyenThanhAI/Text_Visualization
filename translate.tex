@@ -239,7 +239,7 @@
 
     Tính toán vectors các thuật ngữ hoặc các từ là một bước thiết yếu cho nhiều kỹ thuật trực quan hóa và phân tích tài liệu và văn bản.
     Trong \textit{mô hình không gian vector} \cite{356}, một vector của một thuật ngữ hoặc một từ cho một đối tượng quan tâm (đoạn văn, tài liệu hoặc một tập các tài liệu) là một vector mà trong đó mỗi chiều biểu diễn trọng số của một từ đã cho trong tài liệu đó.
-    Thông từ, để loại bỏ nhiễu hoặc các từ dừng (stop words) (ví dụ "the", "a") được loại bỏ (lọc) và các từ có chung gốc được ghép vào làm một (ghép từ gốc).
+    Thông thường, để loại bỏ nhiễu hoặc các từ dừng (stop words) (ví dụ "the", "a") được loại bỏ (lọc) và các từ có chung gốc được ghép vào làm một (ghép từ gốc).
 
     Mã giả bên dưới đếm số lần xuất hiện của các tokens riêng biệt, ngoại trừ các từ dừng.
     Đầu vào được giả định là một luồng của các tokens được tạo ra bởi bộ phân tích từ vựng cho một tài liệu.
@@ -291,10 +291,10 @@
         \end{tabular}
     \end{table}
 
-    \subsection{Tính toán các trong số}
+    \subsection{Tính toán các trọng số}
 
     Mô hình không gian vector yêu cầu một sơ đồ trọng số để gán trọng số cho các thuật ngữ ở trong một tài liệu.
-    Có nhiều phương pháp để làm việc này, phương pháp nổi tiếng nhất trong số đó là tần số thuật ngữ - tần số tài liệu nghịch đảo (tf-idf) \cite{355}.
+    Có nhiều phương pháp để làm việc này, phương pháp nổi tiếng nhất trong số đó là tần suất thuật ngữ - tần suất tài liệu nghịch đảo (tf-idf) \cite{355}.
     Ta đặt $Tf(w)$ là tần suất của thuật ngữ hay số lần mà từ $w$ xuất hiện trong tài liệu, và $Df(w)$ là tần suất của tài liệu (số tài liệu có chứa từ đó).
     Gọi $N$ là số tài liệu. Ta tính $TfIdf(w)$ theo công thức:
 
@@ -392,7 +392,7 @@
     Người dùng có thể đang tìm kiếm các mẫu hoặc các cấu trúc, ví dụ các chủ đề chính của tài liệu, các cụm và phân phối của các chủ đề xuyên suốt tập tài liệu.
     Điều này thường liên quan đến việc trực quan hóa corpus trong bố cục hai chiều hoặc hiển thị cho người dùng một biểu đồ kết nối giữa các tài liệu hoặc thực thể để điều hướng.
     Quá trình trực quan hóa ánh xạ đến trực quan hóa tài liệu: ta thu thập dữ liệu (tập văn bản),
-    biến đổi các tà liệu này thành các vector, sau đó thực thi các thuật toán dựa trên các nhiệm vụ đang được quan tâm (đo độ tương tự, tìm kiếm, phân cụm) và thực hiện trực quan hóa.
+    biến đổi các tài liệu này thành các vector, sau đó thực thi các thuật toán dựa trên các nhiệm vụ đang được quan tâm (đo độ tương tự, tìm kiếm, phân cụm) và thực hiện trực quan hóa.
 
     \begin{figure}[h!]
         \centering
@@ -416,7 +416,7 @@
     \subsection{Đám mây từ}
 
     Đám mây từ (hình \ref{fig:4}), còn được gọi là đám mây văn bản hoặc đám mây thẻ, là bố của các các token mà được tô màu và định cỡ hiển thị theo tần suất xuất hiện của chúng trong một tài liệu.
-    Các đám mây văn bản và các biến thể của chúng, chẳng hạn như Wordle (hình \ref{fig:5}) là những vi dụ về sử quan quá chỉ sử dụng các vector tần suất của các thuật ngữ và một số thuật toán bố cục để tạo trực quan hóa.
+    Các đám mây văn bản và các biến thể của chúng, chẳng hạn như Wordle (hình \ref{fig:5}) là những ví dụ về sử dụng trực quan quá chỉ sử dụng các vector tần suất của các thuật ngữ và một số thuật toán bố cục để tạo trực quan hóa.
 
 
     \begin{figure}[h!]
@@ -429,7 +429,7 @@
 
     \subsection{WordTree}
 
-    Trực quan hóa WordTree \cite{450} là một biểu diễn trực quan của cả tần số thuật ngữ cũng như ngữ cảnh của thuật ngữ (hình \ref{fig:6}).
+    Trực quan hóa WordTree \cite{450} là một biểu diễn trực quan của cả tần suất thuật ngữ cũng như ngữ cảnh của thuật ngữ (hình \ref{fig:6}).
     Kích thước được sử dụng để đại diện cho thuật ngữ hoặc tần suất của cụm từ.
     Gốc của cây là một từ hoặc cụm từ do người dùng chỉ định và các nhánh biểu diễn các ngữ cảnh khác nhau mà từ hoặc cụm từ được sử dụng trong tài liệu.
 
@@ -511,8 +511,8 @@
     Bản đồ tự tổ chức (SOM) \cite{248} là một thuật toán học không giám sát bằng cách sử dụng một tập các nút thường là 2 chiều, vị trí mà tài liệu sẽ được đặt.
     Từng nút có một vector tưng ứng với cùng số chiều với vector đầu vào (các vector tài liệu) được sử dụng để huấn luyện bản đồ.
     Ta khởi tạo các nút của SOM, thường có các trọng số ngẫu nhiên.
-    Ta chọn một ector ngẫu nhiên từ các vector đầu vào và tính toán khoảng cách của nó đến từng mỗi nút khác.
-    Ta điều chỉnh trọng số của các nút gần hất (trong một bán kính cụ thể), làm cho mỗi nút gần hơn tới vector đầu vào,
+    Ta chọn một vector ngẫu nhiên từ các vector đầu vào và tính toán khoảng cách của nó đến từng mỗi nút khác.
+    Ta điều chỉnh trọng số của các nút gần nhất (trong một bán kính cụ thể), làm cho mỗi nút gần hơn tới vector đầu vào,
     với trọng số đầu vào cao hơn tương ứng với nút được chọn gần nhất.
     Khi ta lặp qua các vector đầu vào, bán kính sẽ nhỏ hơn.
     Một ví dụ sử dụng bản đồ tự tổ chức cho dữ liệu văn bản được minh họa trong hình \ref{fig:10} \cite{454},
@@ -523,7 +523,7 @@
 
     Hình nền chủ đề là bản tóm tắt của corpora sử dụng phong cảnh 3 chiều trừu tượng, trong đó chiều cao và màu sắc được sử dụng để biểu diễn mật độ của các tài liệu tương tự giống nhau.
     Một ví dụ được minh họa trong hình \ref{fig:11} từ Pacific Northwest National Labs \cite{407} đại diện cho các bài báo được trực quan hóa dưới dạng hình nền chủ đề.
-    Các ngọn núi ao hơn biểu thị tần suất chủ đề cao hơn trong kho tài liệu (chiều cao tỷ lệ thuận với số lượng tài liệu liên quan đến chủ đề).
+    Các ngọn núi cao hơn biểu thị tần suất chủ đề cao hơn trong kho tài liệu (chiều cao tỷ lệ thuận với số lượng tài liệu liên quan đến chủ đề).
 
     \begin{figure}[h!]
         \centering
@@ -551,7 +551,7 @@
         \centering
         \includegraphics[width=0.95\textwidth]{12.png}
         \caption{Kho tài liệu của hội nghị IEEE InfoVis 2008 được biểu diễn bằng một ma trận các thẻ tài liệu.
-        Tuần suất của các thuật ngữ trên từng trang được hiển thị ở bên tay phải của thẻ lại liệu (màu càng đỏ thể hiện tần số càng cao, ta có thể thấy ở tài liệu thứ nhất ở hàng thứ 3) \cite{400}.}
+        Tuần suất của các thuật ngữ trên từng trang được hiển thị ở bên tay phải của thẻ lại liệu (màu càng đỏ thể hiện tần suất càng cao, ta có thể thấy ở tài liệu thứ nhất ở hàng thứ 3) \cite{400}.}
         \label{fig:12}
     \end{figure}
 
